@@ -58,7 +58,19 @@ Once the server and client are running, you can access the application by visiti
 
 The app allows users to:
 
+   - Users can login and Register
+
+   ![image](https://github.com/prasanth7890/Blog-App/assets/59390943/e8df02d4-96f0-4191-b24c-668330ff5d6b)
+
    - Create new blog posts
+
+   ![image](https://github.com/prasanth7890/Blog-App/assets/59390943/29eeac82-81ce-4dcc-80a0-331312c3e6fc)
+
    - View existing blog posts
+
+   ![image](https://github.com/prasanth7890/Blog-App/assets/59390943/e272b802-e222-46f1-9472-5a967aab9f42)
+
    - Edit and update blog posts
-   - Delete blog posts
+
+   ![image](https://github.com/prasanth7890/Blog-App/assets/59390943/e27f5ee8-cc3a-4bd1-83b8-9c4cc46f53cb)
+   
