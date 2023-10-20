@@ -1,0 +1,39 @@
+div.post-page div.image img {
+    width: 680px;
+    max-height: 200px;
+    overflow: hidden;
+}
+
+
+div.post-page h1 {
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+div.post-page time {
+    text-align: center;
+    display: block;
+    color: #727171;
+    font-size: .8rem;
+}
+
+div.post-page div.author {
+    text-align: center;
+    color: #000;
+    font-weight: bold;
+    margin-bottom: 20px;
+    font-size: .9rem;
+}
+
+
+div.post-page p{
+    line-height: 1.6rem;
+}
+
+button {
+    cursor: pointer;
+}
+
+a {
+    cursor: pointer;
+}
