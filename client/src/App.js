@@ -8,6 +8,7 @@ import CreatePost from './Pages/CreatePost';
 import PostPage from './Pages/PostPage';
 import {UserContextProvider} from './UserContext';
 import EditPost from './Pages/EditPost';
+import { Suspense } from 'react';
 
 function App() {
   return (

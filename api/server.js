@@ -29,7 +29,7 @@ app.use('/uploads', express.static('uploads'));
 const salt = bcrypt.genSaltSync(saltRounds);
 
 // connecting to db
-mongoose.connect(process.env.DB_URL);
+mongoose.connect(process.env.DB_URL).then(()=>console.log('connected to DB'));
 
 
 app.post('/register', async (req, res) => {
@@ -51,6 +51,7 @@ app.post('/login', async (req, res)=> {
     const {username, password} = req.body;
     const userDoc = await User.findOne({username: username});
     const passOk = bcrypt.compareSync(password, userDoc.password);
+
     if(passOk) {
         //logged in
         jwt.sign({username, id: userDoc.id}, secret, {}, (err, token)=>{
@@ -69,15 +70,20 @@ app.post('/login', async (req, res)=> {
 
 
 app.get('/profile', (req, res)=> {
-    let {token} = req.cookies?.token;
-
-    console.log(token);
-
-    jwt.verify(token, secret, {}, (err, info)=>{
-        if(err) throw err;
-
-        res.json(info);
-    })
+    try {
+        let {token} = req.cookies?.token;
+    
+        if(!token) {
+            console.log('Login to Edit Your Articles');
+            return;
+        }
+        
+        jwt.verify(token, secret, {}, (err, info)=>{    
+            res.json(info);
+        })        
+    } catch (error) {
+        console.log(error);
+    }
 });
 
 
@@ -93,7 +99,8 @@ app.post('/post', uploadMiddleware.single('file'), async (req, res)=> {
     fs.renameSync(path, newPath);
 
     // we are getting the cookie containing the author info...
-    const {token} = req.cookies;
+    const {token} = req?.cookies;
+
     jwt.verify(token, secret, {}, async (err, info)=>{
         if(err) throw err;
 

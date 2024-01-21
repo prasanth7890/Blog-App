@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import {Navigate} from 'react-router-dom';
 import ReactQuill from 'react-quill'; //text editor
 import 'react-quill/dist/quill.snow.css';
+import { UserContext } from '../UserContext';
 
 const modules = {
     toolbar: [
@@ -22,12 +23,19 @@ const formats = [
 
 
 export default function CreatePost() {
-    const [title, setTitle] = useState('');
-    const [summary, setSummary] = useState('');
-    const [content, setContent] = useState('');
-    const [files, setFiles] = useState('');
-    const [redirect, setRedirect] = useState(false);
+  
+  const [title, setTitle] = useState('');
+  const [summary, setSummary] = useState('');
+  const [content, setContent] = useState('');
+  const [files, setFiles] = useState('');
+  const [redirect, setRedirect] = useState(false);
+  
+  const {setUserInfo, userInfo} = useContext(UserContext);
 
+    if(!userInfo) {
+      return <Navigate to={'/login'}/>
+    }
+    
     async function createNewPost(ev) {
         const data = new FormData();
         data.set('title', title);
@@ -48,7 +56,7 @@ export default function CreatePost() {
 
         if(response.ok) {
           setRedirect(true);
-        }    
+        } 
     }
 
     if(redirect) {

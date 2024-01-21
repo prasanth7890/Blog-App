@@ -14,8 +14,8 @@ export default function IndexPage() {
 
     return(
         <>
-        {posts.length && posts.map(post =>(
-            <Post {...post}/> //passing all properites from post simply using ...post
+        {posts.length && posts.map((post) =>(
+                <Post key={post._id} {...post}/> 
         ))}
         </>
     )

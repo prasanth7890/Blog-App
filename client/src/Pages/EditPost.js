@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import {useEffect, useState, useContext} from 'react';
 import {Navigate, useParams} from "react-router-dom";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
@@ -36,7 +36,7 @@ export default function EditPost() {
                 setSummary(postInfo.summary);
                 setContent(postInfo.content);
             })
-        })
+        });
     }, []) 
 
     

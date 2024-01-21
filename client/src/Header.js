@@ -12,7 +12,9 @@ export default function Header() {
         response.json().then(userinfo=>{
           setUserInfo(userinfo);
         });
-      });
+      }).catch(()=> {
+        console.log('Please Log in');
+      })
     }, []);
 
 
@@ -20,7 +22,7 @@ export default function Header() {
       fetch('http://localhost:4000/logout', {
         credentials: 'include',
         method: "POST",
-      })
+      });
       setUserInfo(null);
     }
 
